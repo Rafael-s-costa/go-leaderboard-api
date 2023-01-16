@@ -1,21 +1,23 @@
 package main
 
-// album represents data about a record album.
-type user struct {
-	ID    string `json:"id"`
-	name  string `json:"name"`
-	email string `json:"email"`
-}
+import (
+	"net/http"
 
-type game struct {
-	ID   string `json:"id"`
-	name string `json:"name"`
-}
+	"go-leaderboard-api/models"
 
-type record struct {
-	ID     string `json:"id"`
-	time   string `json:"time"`
-	score  string `json:"score"`
-	gameID string `json:"gameid"`
-	userID string `json:"userid"`
+	"github.com/gin-gonic/gin"
+)
+
+func main() {
+	var games = []models.Game{
+		{1, "f"},
+		{2, "test"},
+	}
+
+	router := gin.Default()
+	router.GET("/games", func(ctx *gin.Context) {
+		ctx.IndentedJSON(http.StatusOK, gin.H{"message": games})
+	})
+
+	router.Run()
 }
