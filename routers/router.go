@@ -12,7 +12,8 @@ func InitializeRoutes() {
 	log.Println("Initializing routes")
 	router := gin.Default()
 
-	router.GET("/records/:gameId", api.GetGameRecords)
+	router.GET("/records", api.GetGameRecords)
+	router.POST("/records", api.RegisterRecord)
 
 	router.Run()
 }
