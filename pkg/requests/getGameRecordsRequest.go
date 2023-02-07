@@ -1,5 +1,5 @@
 package requests
 
 type GetGameRecordsRequest struct {
-	GameID uint64 `json:"gameid"`
+	GameID uint64 `json:"gameid" binding:"required"`
 }
